@@ -1,7 +1,8 @@
 import { Button } from "@chakra-ui/react";
+import { MouseEventHandler } from "react";
 
 interface IButton {
-  onClick: () => {} | void;
+  onClick: MouseEventHandler;
   color: string;
   size: string;
   w: string;
