@@ -22,7 +22,7 @@ export const UserContext = createContext({} as IUserContext);
 export function UserContextProvider({ children }: any) {
   const user = "Samuel";
   const storage: any = getLocalStorage();
-  const { login } = JSON.parse(storage);
+  const { login } = JSON.parse(storage ? storage : false);
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(login);
   const [dados, setDados] = useState<null | Dados>();
 
