@@ -53,7 +53,7 @@ export default function Nav() {
 
   useEffect(() => {
     const rota = window.location.href;
-    const parteDaRota = rota.slice("https://main--flourishing-taffy-567f0f.netlify.app/".length);
+    const parteDaRota = rota.slice("http://localhost:5173/".length);
     setPageAtual(parteDaRota);
   }, [location]);
 
