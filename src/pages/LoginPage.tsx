@@ -45,7 +45,7 @@ export const LoginPage = () => {
   }, []);
 
   return (
-    <Container maxWidth={"1100px"} flex={'1 0 auto'}>
+    <Container maxWidth={"1100px"} flex={"1 0 auto"}>
       <Center>
         <Box
           bg={useColorModeValue("#fff", "gray.900")}

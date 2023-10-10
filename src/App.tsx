@@ -6,10 +6,11 @@ import {
   Routes,
   Route,
   useNavigate,
+  Navigate,
 } from "react-router-dom";
 import Conta from "./pages/Conta";
 import ContaInfo from "./pages/ContaInfo";
-import { UserContext, UserContextProvider } from "./contexts/UserContext";
+import { UserContext } from "./contexts/UserContext";
 import { useContext, useEffect } from "react";
 import NotFound from "./pages/NotFound";
 import { createLocalStorage, getLocalStorage } from "./services/storage";
@@ -34,49 +35,52 @@ export function PrivateRoute({ children }: any) {
 
 function App() {
   !getLocalStorage() && createLocalStorage();
-
+  const { isLoggedIn, dados } = useContext(UserContext);
   return (
     <Router>
       <ChakraProvider>
-        <UserContextProvider>
-          <Layout>
-            <Routes>
-              <Route path="/" element={<LoginPage />} />
-              <Route
-                path="/conta/:id"
-                element={
-                  <PrivateRoute>
-                    <Conta />
-                  </PrivateRoute>
-                }
-              />
-              <Route
-                path="/conta/:id/info"
-                element={
-                  <PrivateRoute>
-                    <ContaInfo />
-                  </PrivateRoute>
-                }
-              />
-              <Route
-                path="/perfil"
-                element={
-                  <PrivateRoute>
-                    <Perfil />
-                  </PrivateRoute>
-                }
-              />
-              <Route
-                path="*"
-                element={
-                  <PrivateRoute>
-                    <NotFound />
-                  </PrivateRoute>
-                }
-              />
-            </Routes>
-          </Layout>
-        </UserContextProvider>
+        <Layout>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                !isLoggedIn ? <LoginPage /> : <Navigate to={`/conta/${dados?.id}`} />
+              }
+            />
+            <Route
+              path="/conta/:id"
+              element={
+                <PrivateRoute>
+                  <Conta />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/conta/:id/info"
+              element={
+                <PrivateRoute>
+                  <ContaInfo />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/perfil"
+              element={
+                <PrivateRoute>
+                  <Perfil />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="*"
+              element={
+                <PrivateRoute>
+                  <NotFound />
+                </PrivateRoute>
+              }
+            />
+          </Routes>
+        </Layout>
       </ChakraProvider>
     </Router>
   );

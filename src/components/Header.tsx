@@ -17,10 +17,11 @@ import {
   Container,
 } from "@chakra-ui/react";
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { changeLocalStorage } from "../services/storage";
 import { api } from "../api";
+import { UserContext } from "../contexts/UserContext";
 
 interface Dados {
   email: string;
@@ -36,6 +37,7 @@ export default function Nav() {
   const location = useLocation();
   const navigate = useNavigate();
   const [dados, setDados] = useState<null | Dados>();
+  const { setIsLoggedIn } = useContext(UserContext);
 
   useEffect(() => {
     const getData = async () => {
@@ -49,6 +51,7 @@ export default function Nav() {
   const logout = () => {
     changeLocalStorage({ login: false });
     navigate("/");
+    setIsLoggedIn(false);
   };
 
   useEffect(() => {
