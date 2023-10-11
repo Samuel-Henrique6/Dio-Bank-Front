@@ -54,7 +54,6 @@ export const LoginPage = () => {
           borderRadius="10px"
           p="10px"
         >
-          {!dados ? <h1>Loading...</h1> : <h1>Loaded</h1>}
           <Center>
             <h1>Login</h1>
           </Center>

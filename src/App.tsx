@@ -33,6 +33,8 @@ export function PrivateRoute({ children }: any) {
   return children;
 }
 
+//TODO Implementar responsividade no sistema
+
 function App() {
   !getLocalStorage() && createLocalStorage();
   const { isLoggedIn, dados } = useContext(UserContext);

@@ -38,7 +38,7 @@ const Conta = () => {
   return (
     <Container maxWidth={"1100px"} flex={'1 0 auto'}>
       <Center>
-        <SimpleGrid columns={2} spacing={8} p={16}>
+        <SimpleGrid columns={[1,1,2]} spacing={8} p={[4,8,16]}>
           {!dados ? (
             <Center>
               <Spinner size={"xl"} color={"#FFF"} />
